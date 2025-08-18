@@ -260,8 +260,7 @@ h2, h3 {
     align-items: center;
 }
 
-.testimonials__text{
-    
+.testimonials__text{ 
     margin-top: 24px;
 }
 
@@ -318,7 +317,9 @@ h2, h3 {
     gap: 16px;
 }
 
-
+.testimonial__title{
+    text-align: left;
+}
 
 .testimonial__author__credits{
     display: flex;
