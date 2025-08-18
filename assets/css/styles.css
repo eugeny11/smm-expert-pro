@@ -1129,6 +1129,7 @@ h2, h3 {
     width: 100%;
     margin-top: 72px;
     gap: 24px;
+    align-items: center;
 }
 
 .question__block{
