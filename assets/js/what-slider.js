@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!count) return;
     index = (i + count) % count;
 
-    // крутим оба трека синхронно
     track.style.transform = `translateX(-${index * 100}%)`;
     if (subtitleTrack) {
       subtitleTrack.style.transform = `translateX(-${index * 100}%)`;
@@ -34,16 +33,45 @@ document.addEventListener("DOMContentLoaded", function () {
     clearInterval(timer);
   }
 
-  // клики + перезапуск автоскролла
   prevBtn.addEventListener('click', () => { goTo(index - 1); start(); });
   nextBtn.addEventListener('click', () => { goTo(index + 1); start(); });
   dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); start(); }));
 
-  // автопауза, когда вкладка неактивна
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) stop(); else start();
   });
 
   goTo(0);
   start();
+
+if (window.matchMedia("(max-width: 420px)").matches) {
+  let startX = 0;
+
+  function handleTouchStart(e) {
+    startX = e.touches[0].clientX;
+  }
+
+  function handleTouchEnd(e) {
+    let endX = e.changedTouches[0].clientX;
+    let diff = startX - endX;
+
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        goTo(index + 1);
+      } else {
+        goTo(index - 1);
+      }
+    }
+    start();
+  }
+
+  [track, subtitleTrack].forEach(el => {
+    if (el) {
+      el.addEventListener("touchstart", handleTouchStart);
+      el.addEventListener("touchend", handleTouchEnd);
+    }
+  });
+}
+
+
 });

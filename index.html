@@ -24,50 +24,62 @@
                 <div class="header__lang">
                     <div class="header__lang-pos">RU</div>
                     <img class="header__lang-icon" src="./assets/img/icon/choose-icon.svg" alt="choose icon">
+                    <ul class="header__lang-list">
+                        <li data-lang="RU">RU</li>
+                        <li data-lang="EN">EN</li>
+                    </ul>
+                </div>
+                <div class="header__hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </header>
         </div>    
             <section class="hero">
-                <div class="container container--less">
-                    <div class="hero__content">
-                    <h1 class="hero__content-title">
-                        Привет!
-                        Я — твой ИИ-ассистент — пишу, как ты только лучше. Помогаю вести соцсети легко и профессионально    
-                    </h1>
-                    <p class="hero__content-text">
-                        Как будто ты — топовый автор и маркетолог в своей нише!
-                        Моделирую и усиливаю твою подачу с точностью до 95%
-                    </p>
-                    <button class="hero-btn">
-                        <a href="">Получить пост в моем стиле за 3 мин</a>
-                        
-                    </button>
-                </div>
-                <div class="hero__testimonial">
-                    <div class="container container-less">
-                        <div class="hero__testimonial__content">
-                           <p class="hero__testimonial-text">
-                            “Находка! Помогает не тратить энергию на "как упаковать пост", "какой придумать заголовок". 
-                            А главное — пишет как я — ничего не нужно править! Он с эмоциями, он общается, он — практически живой.”
+                <div class="hero__container">
+                            <div class="hero__content">
+                            <h1 class="hero__content-title">
+                                Привет! <br>
+                                Я — твой ИИ-ассистент — пишу, как ты только лучше. Помогаю вести соцсети легко и профессионально    
+                            </h1>
+                            <p class="hero__content-text">
+                                Как будто ты — топовый автор и маркетолог в своей нише!
+                                Моделирую и усиливаю твою подачу с точностью до 95%
                             </p>
-                        <div class="hero__testimonial__author">
-                            <img src="./assets/img/hero__section-portrait.png" alt="testimonial author" class="hero__testimonial__author-pic">
-                            <div class="hero__testimonial__credits">
-                                <span class="testimonial__author-company">Упаковка и стиль — в точку</span>
-                                <span class="testimonial__author-position">Анна, бизнес-консультант</span>
-                            </div>
-                    </div> 
+                            <button class="hero-btn">
+                                <a href="">Получить пост в моем стиле за 3 мин</a>
+                                
+                            </button>
                         </div>
                         
-                    </div>
-                    
-                </div>
-                <img src="./assets/img/hero__section-img.png" alt="img" class="hero__img">
                 </div>
                
                 
             </section>
-    </div>
+            <section class="quote">
+                <div class="container container--middle">
+                    <div class="container container--less">
+                                <div class="quote__testimonial__content">
+                                    <p class="quote__testimonial-text">
+                                        “Находка! Помогает не тратить энергию на "как упаковать пост", "какой придумать заголовок". 
+                                        А главное — пишет как я — ничего не нужно править! Он с эмоциями, он общается, он — практически живой.”
+                                        </p>
+                                    <div class="quote__testimonial__author">
+                                        <img src="./assets/img/hero__section-portrait.png" alt="testimonial author" class="quote__testimonial__author-pic">
+                                        <div class="quote__testimonial__credits">
+                                            <span class="testimonial__author-company">Упаковка и стиль — в точку</span>
+                                            <span class="testimonial__author-position">Анна, бизнес-консультант</span>
+                                        </div>
+                                    </div> 
+                                </div>    
+                            </div>
+                    <img src="./assets/img/hero__section-img.png" alt="img" class="quote__img"> 
+                </div>
+                            
+                            
+            </section>
+    </div>        
 
             <main class="main">
                 <section class="testimonials">
@@ -361,6 +373,8 @@
                 </div>
             </section>
 
+           
+
             <section class="product">
                 <div class="container container--less">
                     <h2 class="product__title">
@@ -368,7 +382,7 @@
                     </h2>
                     <div class="product__blocks">
                         <div class="product__block">
-                            <img src="assets/img/icon/people_icon.svg" alt="icon" class="product__block-icon">
+                            <img src="assets/img/icon/people_icon.svg" alt="people icon" class="product__block-icon">
                             <h3 class="product__block-title">
                                 Для всех, кто продает себя через соцсети
                             </h3>
@@ -406,7 +420,7 @@
                     </div>
                 </div>
             </section>
-
+             
             <section class="why__it__works">
 
                 <div class="container container--less">
@@ -418,7 +432,10 @@
                             Это не просто генерация текста. Ассистент работает на основе методики
                         AI Persona Business Code TM — транслирует твой стиль, психологию и мышление и усиливает их с точностью до 95%:
                         </p>
-                        <img src="assets/img/why_it_works.png" alt="why it works" class="why-img">
+                        <div class="why-img-wrapper">
+                            <img src="assets/img/why_it_works.png" alt="why it works" class="why-img">
+                        </div>
+                        
                         <div class="why__blocks">
                         <div class="why__block">
                             <img src="assets/img/icon/brand_icon.svg" alt="icon" class="why-icon">
@@ -473,6 +490,9 @@
                 </div>
                 
             </section>
+
+            
+        
 
             <section class="how__it__works">
                 <div class="container">
@@ -532,6 +552,7 @@
                     </div>
                 </div>
             </section>
+           
             <section class="what__is__inside">
                 <div class="container">
                     <div class="what__content">
@@ -540,23 +561,23 @@
                             <div class="subtitle__track">
                                  <div class="what__subtitle">
                                     <h2 class="what-title">51+ формул успешного контента</h2>
-                                    <p class="what-text">Проверенные временем сценарии постов, сторис, сценариев, применяемые автоматически</p>
+                                    <p class="what-text">Проверенные временем сценарии постов, сторис, сценариев, <i>применяемые автоматически</i></p>
                                 </div>
                                 <div class="what__subtitle">
                                     <h2 class="what-title">12 живых стилевых подач</h2>
-                                    <p class="what-text">Смешивай стили между собой, чтобы добиться нужной интонации.</p>
+                                    <p class="what-text">Смешивай стили между собой, чтобы добиться <i>нужной интонации</i>.</p>
                                 </div>
                                 <div class="what__subtitle">
                                     <h2 class="what-title">15+ форматов постов</h2>
-                                    <p class="what-text">Всё уже настроено → выбираешь → получаешь готовую структуру с нужной интонацией.</p>
+                                    <p class="what-text">Всё уже настроено → выбираешь → получаешь готовую структуру <i>с нужной интонацией</i>.</p>
                                 </div>
                                 <div class="what__subtitle">
                                     <h2 class="what-title">7+ воронок, прогревов и контент-планов</h2>
-                                    <p class="what-text">Прогревай аудиторию и продавай — в своей подаче</p>
+                                    <p class="what-text">Прогревай аудиторию и продавай — <i>в своей подаче</i></p>
                                 </div>
                                 <div class="what__subtitle">
                                     <h2 class="what-title">Визуалы: картинки к постам</h2>
-                                    <p class="what-text">Красивые картинки к посту, подходящие под ваш стиль и нишу — в один клик</p>
+                                    <p class="what-text">Красивые картинки к посту, подходящие под ваш стиль и нишу — <i>в один клик</i></p>
                                 </div>
                             </div>
                         </div>
@@ -667,6 +688,7 @@
                     </div>
                 </div>
             </section>
+            
             <section class="results">
                 <div class="container">
                     <div class="results__content">
@@ -692,6 +714,7 @@
                     </div>
                 </div>
             </section>
+             
             <section class="tariffs">
                 <div class="container container--less">
                     <div class="tariffs__content">
@@ -915,7 +938,7 @@
             </section>
             <div class="container container--less">
                 <div class="regime">
-                <img src="assets/img/icon/people_icon.svg" alt="people icon">
+                <img src="assets/img/icon/people_icon_gadget.png" alt="people icon">
                 <div class="regime__content">
                     <span class="regime__content-title">
                         Для команд и продюсеров — командный режим
@@ -926,6 +949,7 @@
             </div>
             </div>
 
+            
             <section class="questions">
                 <div class="container">
                     <div class="questions__content">
@@ -963,6 +987,7 @@
                 </div>
             </section>
 
+           
             <section class="not__fit">
                 <div class="container">
                     <div class="not__content">
@@ -983,9 +1008,9 @@
                         </div>
                     </div>
                 </div>
-                
             </section>
 
+          
             <section class="are__you__ready">
                 <div class="big__container">
                     <div class="ready__content">
@@ -1000,16 +1025,21 @@
                 
             </section>
 
+              
             <section class="for__commands">
                 <div class="container">
                     <div class="commands__content">
                         <div class="commands__infobox">
                             <div class="infobox__header">
-                                <h2 class="commands_title">Для команд, экспертов и продюсеров</h2>
+                                <h2 class="commands__title">Для команд, экспертов и продюсеров <img src="assets/img/icon/sunglasses_face_icon.svg" alt=""></h2>
                                 <img src="assets/img/icon/sunglasses_face_icon.svg" alt="">
                             </div>
                             <p class="infobox__text">
-                                Хотите масштабировать стиль команды, создавать контент для нескольких экспертов или агентств?
+                              Хотите масштабировать стиль команды, создавать контент для нескольких экспертов или агентств? 
+                              
+                                <img src="assets/img/icon/star__face__icon.svg" alt="smile icon">
+                             
+                                 
                             </p>
                             <div class="infobox__content">
                                 <div class="infobox__content__left">
@@ -1069,8 +1099,10 @@
                     </div>
                 </div>
             </footer>
+           
             
    <script src="assets/js/testimonials-slider.js"></script>
    <script src="assets/js/what-slider.js"></script>
+   <script src="assets/js/header.js"></script>
 </body>
 </html>
