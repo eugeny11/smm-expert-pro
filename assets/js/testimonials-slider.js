@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
   let index = 0;
   const steps = dots.length;
   const AUTOPLAY_MS = 4000;
+  const RESUME_DELAY = 4000; 
   let timer;
+  let resumeTimeout;
 
   function goTo(i) {
     index = (i + steps) % steps;
@@ -26,50 +28,48 @@ document.addEventListener("DOMContentLoaded", function () {
     clearInterval(timer);
   }
 
-  prevBtn.addEventListener('click', () => { goTo(index - 1); start(); });
-  nextBtn.addEventListener('click', () => { goTo(index + 1); start(); });
-  dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); start(); }));
+  function pauseAndResume() {
+    stop();
+    clearTimeout(resumeTimeout);
+    resumeTimeout = setTimeout(() => {
+      start();
+    }, RESUME_DELAY);
+  }
 
+  // кнопки и точки
+  prevBtn.addEventListener('click', () => { goTo(index - 1); pauseAndResume(); });
+  nextBtn.addEventListener('click', () => { goTo(index + 1); pauseAndResume(); });
+  dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); pauseAndResume(); }));
+
+  // свайп для <=420px
   if (window.matchMedia("(max-width: 420px)").matches) {
-  let startX = 0;
+    let startX = 0;
 
-  trackBody.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
+    function handleTouchStart(e) {
+      startX = e.touches[0].clientX;
+    }
 
-  trackBody.addEventListener("touchend", (e) => {
-    let endX = e.changedTouches[0].clientX;
-    let diff = startX - endX;
+    function handleTouchEnd(e) {
+      let endX = e.changedTouches[0].clientX;
+      let diff = startX - endX;
 
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        goTo(index + 1);
-      } else {
-        goTo(index - 1);
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          goTo(index + 1);
+        } else {
+          goTo(index - 1);
+        }
+        pauseAndResume(); // свайп → пауза и возобновление
       }
     }
-    start();
-  });
 
-  trackAuthor.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
-
-  trackAuthor.addEventListener("touchend", (e) => {
-    let endX = e.changedTouches[0].clientX;
-    let diff = startX - endX;
-
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        goTo(index + 1);
-      } else {
-        goTo(index - 1);
+    [trackAuthor, trackBody].forEach(el => {
+      if (el) {
+        el.addEventListener("touchstart", handleTouchStart);
+        el.addEventListener("touchend", handleTouchEnd);
       }
-    }
-    start();
-  });
-}
-
+    });
+  }
 
   goTo(0);
   start();

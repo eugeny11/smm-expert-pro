@@ -8,8 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let index = 0;
   const count = slides.length;
-  const AUTOPLAY_MS = 4000;
+  const AUTOPLAY_MS = 4000;   
+  const RESUME_DELAY = 4000;  
   let timer;
+  let resumeTimeout;
 
   function goTo(i) {
     if (!count) return;
@@ -33,10 +35,22 @@ document.addEventListener("DOMContentLoaded", function () {
     clearInterval(timer);
   }
 
-  prevBtn.addEventListener('click', () => { goTo(index - 1); start(); });
-  nextBtn.addEventListener('click', () => { goTo(index + 1); start(); });
-  dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); start(); }));
+  function pauseAndResume() {
+    stop();
+    clearTimeout(resumeTimeout);
+    resumeTimeout = setTimeout(() => {
+      start();
+    }, RESUME_DELAY);
+  }
 
+  // стрелки
+  prevBtn.addEventListener('click', () => { goTo(index - 1); pauseAndResume(); });
+  nextBtn.addEventListener('click', () => { goTo(index + 1); pauseAndResume(); });
+  dots.forEach((dot, i) => 
+    dot.addEventListener('click', () => { goTo(i); pauseAndResume(); })
+  );
+
+  // пауза при скрытии вкладки
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) stop(); else start();
   });
@@ -44,34 +58,33 @@ document.addEventListener("DOMContentLoaded", function () {
   goTo(0);
   start();
 
-if (window.matchMedia("(max-width: 420px)").matches) {
-  let startX = 0;
+  // свайп для <=420px
+  if (window.matchMedia("(max-width: 420px)").matches) {
+    let startX = 0;
 
-  function handleTouchStart(e) {
-    startX = e.touches[0].clientX;
-  }
+    function handleTouchStart(e) {
+      startX = e.touches[0].clientX;
+    }
 
-  function handleTouchEnd(e) {
-    let endX = e.changedTouches[0].clientX;
-    let diff = startX - endX;
+    function handleTouchEnd(e) {
+      let endX = e.changedTouches[0].clientX;
+      let diff = startX - endX;
 
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        goTo(index + 1);
-      } else {
-        goTo(index - 1);
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          goTo(index + 1);
+        } else {
+          goTo(index - 1);
+        }
+        pauseAndResume(); // свайп → пауза с возобновлением
       }
     }
-    start();
+
+    [track, subtitleTrack].forEach(el => {
+      if (el) {
+        el.addEventListener("touchstart", handleTouchStart);
+        el.addEventListener("touchend", handleTouchEnd);
+      }
+    });
   }
-
-  [track, subtitleTrack].forEach(el => {
-    if (el) {
-      el.addEventListener("touchstart", handleTouchStart);
-      el.addEventListener("touchend", handleTouchEnd);
-    }
-  });
-}
-
-
 });
